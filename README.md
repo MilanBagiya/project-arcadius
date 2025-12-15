@@ -168,32 +168,6 @@ src/
   }
 }
 ```
-
-### **Environment Variables**
-
-```bash
-# environment.ts
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:3000/api',
-  mockDelay: 500,     // Mock API delay in ms
-  defaultRows: 4,
-  defaultColumns: 7
-};
-```
-
----
-
-## 🔌 **API Integration**
-
-### **Mock API Endpoints**
-
-| Method | Endpoint                         | Description    |
-| ------ | -------------------------------- | -------------- |
-| `GET`  | `/api/purchase-orders`           | Get all POs    |
-| `GET`  | `/api/purchase-orders/search?q=` | Search POs     |
-| `GET`  | `/api/purchase-orders/:id`       | Get PO details |
-
 ### **Sample PO Data**
 
 ```json
