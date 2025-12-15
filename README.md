@@ -30,8 +30,7 @@ Project Arcadius automates this process with:
 ---
 
 ### **UI:**
-
-![Uploading screencapture-localhost-4200-po-distribution-2025-12-15-14_38_09.png…]()
+<img width="2560" height="2442" alt="screencapture-localhost-4200-po-distribution-2025-12-15-14_38_09" src="https://github.com/user-attachments/assets/8534b694-ab6b-41e2-ad56-39f10ae99ebb" />
 <img width="2560" height="2442" alt="screencapture-localhost-4200-po-distribution-2025-12-15-14_38_27" src="https://github.com/user-attachments/assets/be54a5b0-8213-45fd-ab40-f485684b9c7b" />
 
 
