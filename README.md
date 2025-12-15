@@ -235,10 +235,13 @@ ng test --include='**/*.service.spec.ts'
 
 | Area       | Coverage | Status |
 | ---------- | -------- | ------ |
-| Services   | 95%      | ✅     |
-| Components | 88%      | ✅     |
+| Services   | 100%      | ✅     |
+| Components | 100%      | ✅     |
 | Models     | 100%     | ✅     |
-| Utilities  | 92%      | ✅     |
+| Utilities  | 100%      | ✅     |
+
+<img width="2558" height="706" alt="image" src="https://github.com/user-attachments/assets/5e47efb8-6f70-46b7-8b62-e43e999268f9" />
+
 
 ### **Key Test Cases**
 
