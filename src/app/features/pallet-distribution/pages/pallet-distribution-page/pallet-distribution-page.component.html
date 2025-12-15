@@ -1,0 +1,278 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 p-4 md:p-6"
+>
+  <div class="mb-8 mx-auto">
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Pallet Distribution</h1>
+      <p class="text-gray-600">
+        Search and configure pallets for purchase orders
+      </p>
+    </div>
+    <app-po-search
+      (poSelected)="handlePurchaseOrderSelection($event)"
+    ></app-po-search>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 py-6">
+    <mat-card
+      *ngIf="selectedPurchaseOrder"
+      @fadeIn
+      class="rounded-2xl shadow-xl border-0 overflow-hidden bg-gradient-to-br from-gray-50 to-white min-h-[calc(100vh-8rem)] max-h-[calc(100vh-8rem)] flex flex-col"
+    >
+      <div
+        class="bg-gradient-to-r from-blue-600 via-blue-600 to-blue-700 px-6 md:px-8 py-5"
+      >
+        <div class="flex flex-col md:flex-row md:items-center justify-between">
+          <div class="flex items-center space-x-4 mb-4 md:mb-0">
+            <div class="p-2.5 bg-white/10 backdrop-blur-sm rounded-xl">
+              <mat-icon class="text-white">receipt_long</mat-icon>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl md:text-2xl font-bold text-white truncate">
+                {{ selectedPurchaseOrder.orderNumber }}
+              </h2>
+              <p class="text-blue-100/90 text-sm mt-1 truncate max-w-lg">
+                {{ selectedPurchaseOrder.description }}
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="text-right hidden sm:block">
+              <div
+                class="text-blue-200/80 text-xs font-medium uppercase tracking-wider"
+              >
+                Order Date
+              </div>
+              <div class="text-white font-semibold text-lg">
+                {{ selectedPurchaseOrder.date | date : "mediumDate" }}
+              </div>
+            </div>
+            <button
+              mat-icon-button
+              class="bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200"
+              (click)="clearSelection()"
+              aria-label="Close"
+            >
+              <mat-icon class="text-white">close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollable Content Container -->
+      <div class="flex-1 overflow-y-auto">
+        <div class="p-6 md:p-8">
+          <!-- Stats Overview -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+            <div
+              class="bg-gradient-to-br from-blue-50/80 to-white p-6 rounded-2xl border border-blue-200/50 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div class="flex items-center">
+                <div
+                  class="p-3.5 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mr-4 shadow-md"
+                >
+                  <mat-icon class="text-white">inventory_2</mat-icon>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-600 font-medium mb-1">
+                    Products
+                  </div>
+                  <div class="text-2xl font-bold text-gray-900">
+                    {{ selectedPurchaseOrder.products.length || 0 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-emerald-50/80 to-white p-6 rounded-2xl border border-emerald-200/50 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div class="flex items-center">
+                <div
+                  class="p-3.5 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl mr-4 shadow-md"
+                >
+                  <mat-icon class="text-white">pallet</mat-icon>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-600 font-medium mb-1">
+                    Pallets
+                  </div>
+                  <div class="text-2xl font-bold text-gray-900">
+                    {{ pallets.length }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-violet-50/80 to-white p-6 rounded-2xl border border-violet-200/50 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div class="flex items-center">
+                <div
+                  class="p-3.5 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl mr-4 shadow-md"
+                >
+                  <mat-icon class="text-white">numbers</mat-icon>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-600 font-medium mb-1">
+                    Total Items
+                  </div>
+                  <div class="text-2xl font-bold text-gray-900">
+                    {{ calculateTotalItems() }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Configuration Section -->
+          <section class="mb-12">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between mb-8"
+            >
+              <div class="flex items-center mb-4 sm:mb-0">
+                <div
+                  class="p-3 bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl mr-4 shadow-sm"
+                >
+                  <mat-icon class="text-gray-700">settings</mat-icon>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">
+                    Pallet Configuration
+                  </h3>
+                  <p class="text-gray-500 text-sm mt-1">
+                    Configure pallet distribution parameters
+                  </p>
+                </div>
+              </div>
+              <button
+                mat-stroked-button
+                color="warn"
+                (click)="resetConfiguration()"
+                class="border-red-200 text-red-600 hover:bg-red-50 transition-colors"
+              >
+                <mat-icon class="mr-2">restart_alt</mat-icon>
+                Reset Configuration
+              </button>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-gray-50/80 to-white rounded-2xl p-5 border border-gray-200/60 shadow-sm"
+            >
+              <app-pallet-config
+                [products]="selectedPurchaseOrder.products"
+                (palletsGenerated)="handlePalletsGenerated($event)"
+              ></app-pallet-config>
+            </div>
+          </section>
+
+          <!-- Results Section -->
+          <section class="mb-6">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between mb-8"
+            >
+              <div class="flex items-center mb-4 sm:mb-0">
+                <div
+                  class="p-3 bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl mr-4 shadow-sm"
+                >
+                  <mat-icon class="text-gray-700">bar_chart</mat-icon>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">
+                    Distribution Results
+                  </h3>
+                  <p class="text-gray-500 text-sm mt-1">
+                    Generated pallet layout and statistics
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex space-x-3" *ngIf="pallets.length > 0">
+                <button
+                  mat-stroked-button
+                  color="primary"
+                  (click)="exportResults()"
+                  class="flex items-center gap-2 border-blue-200 text-blue-600 hover:bg-blue-50 transition-colors"
+                >
+                  <mat-icon>download</mat-icon>
+                  Export
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="printResults()"
+                  class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all shadow-md"
+                >
+                  <mat-icon>print</mat-icon>
+                  Print
+                </button>
+              </div>
+            </div>
+
+            <!-- Results Content -->
+            <div
+              class="transition-all duration-500"
+              [class.opacity-100]="pallets.length > 0"
+              [class.opacity-50]="pallets.length === 0"
+            >
+              <div *ngIf="pallets.length > 0" class="mb-8">
+                <app-pallet-result [pallets]="pallets"></app-pallet-result>
+              </div>
+
+              <!-- Empty State -->
+              <div
+                *ngIf="pallets.length === 0"
+                class="text-center py-16 px-6 bg-gradient-to-br from-gray-50/50 to-white rounded-2xl border-2 border-dashed border-gray-300/60 shadow-sm"
+              >
+                <div
+                  class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl mb-6 shadow-sm"
+                >
+                  <mat-icon class="text-blue-600 text-4xl"
+                    >auto_awesome</mat-icon
+                  >
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">
+                  Ready to Generate Pallets
+                </h4>
+                <p class="text-gray-600 max-w-md mx-auto mb-8 leading-relaxed">
+                  Configure the pallet distribution settings above to generate
+                  optimal pallet layouts for this purchase order.
+                </p>
+                <div
+                  class="inline-flex items-center text-blue-600 font-medium bg-blue-50 px-5 py-3 rounded-xl"
+                >
+                  <mat-icon class="mr-2 animate-bounce">arrow_upward</mat-icon>
+                  Configure settings to get started
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- No PO Selected State -->
+    <div *ngIf="!selectedPurchaseOrder" class="text-center py-20 px-6">
+      <div class="max-w-lg mx-auto">
+        <div
+          class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-100 to-blue-100 rounded-2xl mb-8 shadow-md"
+        >
+          <mat-icon class="text-indigo-600 text-5xl">search</mat-icon>
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">
+          Select a Purchase Order
+        </h4>
+        <p class="text-gray-600 mb-10 leading-relaxed">
+          Use the search bar above to find a purchase order and begin
+          configuring optimal pallet distribution.
+        </p>
+        <div
+          class="inline-flex items-center text-indigo-600 bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-4 rounded-xl border border-indigo-100 shadow-sm"
+        >
+          <mat-icon class="mr-3 animate-pulse">arrow_upward</mat-icon>
+          <span class="font-semibold">Search above to get started</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

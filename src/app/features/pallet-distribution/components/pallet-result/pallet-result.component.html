@@ -1,0 +1,18 @@
+<div class="grid grid-cols-3 gap-4 mt-4">
+  <div
+    *ngFor="let pallet of pallets"
+    class="border rounded-lg p-3 bg-gray-50 shadow-sm"
+  >
+    <div class="flex justify-between mb-1">
+      <div class="font-medium">
+        {{ pallet.productName }} - Pallet #{{ pallet.palletNumber }}
+      </div>
+      <div class="text-sm text-gray-500">
+        {{ pallet.rows }}x{{ pallet.columns }}
+      </div>
+    </div>
+    <div class="text-gray-600 text-sm">
+      Quantity: {{ pallet.quantityFilled }} / {{ pallet.capacity }}
+    </div>
+  </div>
+</div>

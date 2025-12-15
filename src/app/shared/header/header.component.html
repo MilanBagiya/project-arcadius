@@ -1,0 +1,97 @@
+<header
+  class="bg-white/90 backdrop-blur border-b border-gray-200 sticky top-0 z-50"
+>
+  <div
+    class="container mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between"
+  >
+    <div class="flex items-center gap-3 cursor-pointer" routerLink="/">
+      <mat-icon class="text-blue-600">inventory_2</mat-icon>
+      <span class="text-xl font-bold text-gray-900 tracking-tight">
+        Arcadius
+      </span>
+    </div>
+
+    <nav
+      class="hidden md:flex items-center gap-6 text-sm font-medium"
+      aria-label="Main navigation"
+    >
+      <a
+        routerLink="/"
+        routerLinkActive="text-blue-600"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+      >
+        Dashboard
+      </a>
+
+      <a
+        routerLink="/pallet"
+        routerLinkActive="text-blue-600"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+      >
+        Pallet Distribution
+      </a>
+
+      <a
+        routerLink="/reports"
+        routerLinkActive="text-blue-600"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+      >
+        Reports
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-2 md:gap-4">
+      <button
+        mat-icon-button
+        aria-label="Notifications"
+        class="hover:bg-gray-100 rounded-full"
+      >
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        aria-label="User profile"
+        class="hover:bg-gray-100 rounded-full"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        class="md:hidden"
+        aria-label="Open menu"
+        (click)="isMenuOpen = !isMenuOpen"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isMenuOpen" class="md:hidden border-t border-gray-200 bg-white">
+    <nav class="flex flex-col px-4 py-3 space-y-2 text-sm font-medium">
+      <a
+        routerLink="/"
+        (click)="isMenuOpen = false"
+        class="text-gray-700 hover:text-blue-600"
+      >
+        Dashboard
+      </a>
+      <a
+        routerLink="/pallet"
+        (click)="isMenuOpen = false"
+        class="text-gray-700 hover:text-blue-600"
+      >
+        Pallet Distribution
+      </a>
+      <a
+        routerLink="/reports"
+        (click)="isMenuOpen = false"
+        class="text-gray-700 hover:text-blue-600"
+      >
+        Reports
+      </a>
+    </nav>
+  </div>
+</header>

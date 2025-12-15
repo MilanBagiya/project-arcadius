@@ -1,0 +1,46 @@
+<table class="min-w-full border border-gray-200">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 border">Product</th>
+      <th class="px-4 py-2 border">Quantity</th>
+      <th class="px-4 py-2 border">Rows (Override)</th>
+      <th class="px-4 py-2 border">Columns (Override)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td class="px-4 py-2 border">{{ p.name }}</td>
+      <td class="px-4 py-2 border">{{ p.quantity }}</td>
+      <td class="px-4 py-2 border">
+        <input
+          type="number"
+          min="1"
+          class="w-16 border rounded px-1 py-0.5"
+          [value]="p.palletConfig?.rows"
+          (change)="
+            updateConfig(
+              p,
+              $any($event.target).value,
+              p.palletConfig?.columns || 0
+            )
+          "
+        />
+      </td>
+      <td class="px-4 py-2 border">
+        <input
+          type="number"
+          min="1"
+          class="w-16 border rounded px-1 py-0.5"
+          [value]="p.palletConfig?.columns"
+          (change)="
+            updateConfig(
+              p,
+              p.palletConfig?.rows || 0,
+              $any($event.target).value
+            )
+          "
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>

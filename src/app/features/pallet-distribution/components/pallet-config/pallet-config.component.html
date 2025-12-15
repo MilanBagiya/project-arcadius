@@ -1,0 +1,62 @@
+<mat-card class="p-6 rounded-xl shadow-sm bg-white space-y-6">
+  <mat-card-header>
+    <mat-card-title class="text-lg font-semibold">
+      Pallet Configuration
+    </mat-card-title>
+  </mat-card-header>
+
+  <form #configForm="ngForm" class="grid grid-cols-2 gap-4">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Rows (Global)</mat-label>
+      <input
+        matInput
+        type="number"
+        name="globalRows"
+        [(ngModel)]="globalRows"
+        required
+        min="1"
+        #rowsCtrl="ngModel"
+      />
+      <mat-hint>Minimum 1 row</mat-hint>
+      <mat-error *ngIf="rowsCtrl.invalid && rowsCtrl.touched">
+        Rows must be at least 1
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Columns (Global)</mat-label>
+      <input
+        matInput
+        type="number"
+        name="globalColumns"
+        [(ngModel)]="globalColumns"
+        required
+        min="1"
+        #colsCtrl="ngModel"
+      />
+      <mat-hint>Minimum 1 column</mat-hint>
+      <mat-error *ngIf="colsCtrl.invalid && colsCtrl.touched">
+        Columns must be at least 1
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <section>
+    <app-product-table
+      [products]="products"
+      (productsChange)="onProductsChange($event)"
+    ></app-product-table>
+  </section>
+
+  <div class="flex justify-end">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="configForm.invalid || !products.length"
+      (click)="distributeProducts()"
+    >
+      Auto Distribute Products
+    </button>
+  </div>
+</mat-card>

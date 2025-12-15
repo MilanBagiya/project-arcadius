@@ -1,0 +1,95 @@
+<footer
+  class="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-gray-300"
+>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <mat-icon class="text-blue-400">inventory_2</mat-icon>
+          <span class="text-xl font-bold text-white tracking-tight">
+            Arcadius
+          </span>
+        </div>
+
+        <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+          Advanced pallet distribution and logistics optimization system for
+          modern supply chain management.
+        </p>
+
+        <div class="flex items-center gap-4">
+          <a aria-label="Website" class="hover:text-white transition-colors">
+            <mat-icon>language</mat-icon>
+          </a>
+          <a aria-label="Help" class="hover:text-white transition-colors">
+            <mat-icon>help_outline</mat-icon>
+          </a>
+          <a aria-label="Contact" class="hover:text-white transition-colors">
+            <mat-icon>email</mat-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-sm font-semibold text-gray-200 uppercase tracking-wide">
+          Quick Links
+        </h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a routerLink="/" class="hover:text-white transition-colors">
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a routerLink="/pallet" class="hover:text-white transition-colors">
+              Pallet Distribution
+            </a>
+          </li>
+          <li>
+            <a routerLink="/reports" class="hover:text-white transition-colors">
+              Reports
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-sm font-semibold text-gray-200 uppercase tracking-wide">
+          System Info
+        </h3>
+
+        <div class="flex items-center gap-2 text-sm">
+          <mat-icon class="text-xs text-green-400">circle</mat-icon>
+          <span>
+            Status:
+            <span class="text-green-400 font-medium"> Operational </span>
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2 text-sm">
+          <mat-icon class="text-xs">check_circle</mat-icon>
+          <span>Version {{ version }}</span>
+        </div>
+
+        <div class="flex items-center gap-2 text-sm">
+          <mat-icon class="text-xs">update</mat-icon>
+          <span>
+            Updated:
+            {{ lastUpdated | date : "mediumDate" }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="mt-10 pt-6 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4"
+    >
+      <p class="text-gray-500 text-sm">
+        © {{ currentYear }} Project Arcadius. All rights reserved.
+      </p>
+
+      <p class="text-gray-500 text-sm">
+        Built for scalable logistics solutions
+      </p>
+    </div>
+  </div>
+</footer>
