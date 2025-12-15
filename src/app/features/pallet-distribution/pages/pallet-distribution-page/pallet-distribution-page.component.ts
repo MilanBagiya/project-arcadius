@@ -1,8 +1,8 @@
+import { Pallet } from '@/app/core/models/pallet.model';
+import { PurchaseOrder } from '@/app/core/models/purchase-order.model';
+import { PalletExportService } from '@/app/core/services/pallet-export.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Pallet } from '../../../../core/models/pallet.model';
-import { PurchaseOrder } from '../../../../core/models/purchase-order.model';
-import { PalletExportService } from '../../../../core/services/pallet-export.service';
 
 @Component({
   selector: 'app-pallet-distribution-page',
@@ -54,6 +54,11 @@ export class PalletDistributionPageComponent implements OnInit {
         0
       ) || 0
     );
+  }
+
+  clearSearch(): void {
+    this.selectedPurchaseOrder = null;
+    this.pallets = [];
   }
 
   exportResults(): void {

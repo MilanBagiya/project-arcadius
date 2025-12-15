@@ -17,8 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { of, throwError } from 'rxjs';
 
 import { PoSearchComponent } from './po-search.component';
-import { PurchaseOrderService } from '../../../../core/services/purchase-order.service';
-import { PurchaseOrder } from '../../../../core/models/purchase-order.model';
+import { PurchaseOrder } from '@/app/core/models/purchase-order.model';
+import { PurchaseOrderService } from '@/app/core/services/purchase-order.service';
 
 describe('PoSearchComponent', () => {
   let component: PoSearchComponent;

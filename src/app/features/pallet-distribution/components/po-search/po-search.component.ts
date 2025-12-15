@@ -7,8 +7,8 @@ import {
   stagger,
   query,
 } from '@angular/animations';
-import { PurchaseOrder } from '../../../../core/models/purchase-order.model';
-import { PurchaseOrderService } from '../../../../core/services/purchase-order.service';
+import { PurchaseOrder } from '@/app/core/models/purchase-order.model';
+import { PurchaseOrderService } from '@/app/core/services/purchase-order.service';
 
 @Component({
   selector: 'app-po-search',
@@ -45,6 +45,7 @@ import { PurchaseOrderService } from '../../../../core/services/purchase-order.s
 })
 export class PoSearchComponent {
   @Output() poSelected = new EventEmitter<PurchaseOrder>();
+  @Output() onClear = new EventEmitter<void>();
 
   searchTerm = '';
   searchResults: PurchaseOrder[] | null = [];
@@ -83,6 +84,7 @@ export class PoSearchComponent {
   clearSearch(): void {
     this.searchTerm = '';
     this.searchResults = [];
+    this.onClear.emit();
   }
 
   clearResults(): void {

@@ -1,3 +1,5 @@
+import { Pallet } from '@/app/core/models/pallet.model';
+import { Product } from '@/app/core/models/product.model';
 import {
   Component,
   EventEmitter,
@@ -7,8 +9,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Pallet } from '../../../../core/models/pallet.model';
-import { Product } from '../../../../core/models/product.model';
 
 @Component({
   selector: 'app-pallet-config',

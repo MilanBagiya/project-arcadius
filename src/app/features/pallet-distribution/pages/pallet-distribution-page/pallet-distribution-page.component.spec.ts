@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Pallet } from '../../../../core/models/pallet.model';
-import { PurchaseOrder } from '../../../../core/models/purchase-order.model';
 import { PalletDistributionPageComponent } from './pallet-distribution-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Pallet } from '@/app/core/models/pallet.model';
+import { PurchaseOrder } from '@/app/core/models/purchase-order.model';
 import { PoSearchComponent } from '../../components/po-search/po-search.component';
 
 describe('PalletDistributionPageComponent', () => {
@@ -136,6 +136,16 @@ describe('PalletDistributionPageComponent', () => {
     component.exportResults();
 
     expect(exportSpy).not.toHaveBeenCalled();
+  });
+
+  it('should reset selectedPurchaseOrder and pallets when clearSearch is called', () => {
+    component.selectedPurchaseOrder = { id: 1, name: 'PO-001' } as any;
+    component.pallets = [{ id: 1 }, { id: 2 }] as any;
+
+    component.clearSearch();
+
+    expect(component.selectedPurchaseOrder).toBeNull();
+    expect(component.pallets).toEqual([]);
   });
 
   it('should export pallets when pallets exist', () => {

@@ -1,7 +1,6 @@
 import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../../../core/models/product.model';
 import { PalletConfigComponent } from './pallet-config.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PoSearchComponent } from '../po-search/po-search.component';
 import { ProductTableComponent } from '../product-table/product-table.component';
+import { Product } from '@/app/core/models/product.model';
 
 describe('PalletConfigComponent', () => {
   let component: PalletConfigComponent;

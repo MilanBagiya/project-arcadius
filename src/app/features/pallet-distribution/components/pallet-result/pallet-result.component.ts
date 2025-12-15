@@ -1,5 +1,5 @@
+import { Pallet } from '@/app/core/models/pallet.model';
 import { Component, Input } from '@angular/core';
-import { Pallet } from '../../../../core/models/pallet.model';
 
 @Component({
   selector: 'app-pallet-result',
