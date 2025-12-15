@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Pallet } from '../../../../core/models/pallet.model';
 import { PurchaseOrder } from '../../../../core/models/purchase-order.model';
+import { PalletExportService } from '../../../../core/services/pallet-export.service';
 
 @Component({
   selector: 'app-pallet-distribution-page',
@@ -24,6 +25,8 @@ export class PalletDistributionPageComponent implements OnInit {
   pallets: Pallet[] = [];
   currentYear: number = new Date().getFullYear();
   lastUpdated: Date = new Date();
+
+  constructor(private exportService: PalletExportService) {}
 
   ngOnInit(): void {}
 
@@ -55,17 +58,10 @@ export class PalletDistributionPageComponent implements OnInit {
 
   exportResults(): void {
     if (!this.pallets.length) return;
-    console.log('Exporting pallets:', this.pallets);
-    // TODO: Implement export (CSV, PDF)
-  }
-
-  printResults(): void {
-    if (!this.pallets.length) return;
-    // TODO: Implement print
+    this.exportService.exportToCsv(this.pallets);
   }
 
   resetConfiguration(): void {
-    // Reset pallet config logic here
     this.pallets = [];
   }
 

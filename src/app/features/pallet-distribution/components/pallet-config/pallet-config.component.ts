@@ -1,14 +1,14 @@
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
+  Input,
   OnChanges,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../../../core/models/product.model';
 import { Pallet } from '../../../../core/models/pallet.model';
+import { Product } from '../../../../core/models/product.model';
 
 @Component({
   selector: 'app-pallet-config',

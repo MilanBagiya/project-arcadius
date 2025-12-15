@@ -1,7 +1,6 @@
 <mat-card
   class="p-4 md:p-6 rounded-2xl shadow-md border-0 bg-gradient-to-br from-white to-gray-50"
 >
-  <!-- Search Header -->
   <div class="flex items-center gap-2 mb-4">
     <h5 class="text-lg font-semibold text-gray-800">Search Purchase Orders</h5>
     <span
@@ -11,9 +10,7 @@
     </span>
   </div>
 
-  <!-- Search Controls -->
   <div class="flex flex-col md:flex-row gap-3 items-start md:items-center">
-    <!-- Search Input -->
     <mat-form-field appearance="fill" class="flex-1 w-full">
       <mat-label>Search by PO number or description</mat-label>
       <input
@@ -38,7 +35,6 @@
       </mat-hint>
     </mat-form-field>
 
-    <!-- Search Button -->
     <button
       mat-raised-button
       color="primary"
@@ -51,7 +47,6 @@
     </button>
   </div>
 
-  <!-- Quick Filters (Optional) -->
   <div class="flex flex-wrap gap-2 mt-4">
     <button
       mat-stroked-button
@@ -82,13 +77,11 @@
     </button>
   </div>
 
-  <!-- Search Results -->
   <div
     *ngIf="searchResults?.length"
     @fadeIn
     class="mt-6 border border-gray-200 rounded-xl overflow-hidden shadow-sm"
   >
-    <!-- Results Header -->
     <div
       class="bg-gradient-to-r from-gray-50 to-gray-100 px-4 py-3 border-b border-gray-200"
     >
@@ -104,7 +97,6 @@
       </div>
     </div>
 
-    <!-- Results List -->
     <div class="divide-y divide-gray-100 max-h-96 overflow-y-auto">
       <div
         *ngFor="let po of searchResults; let i = index"
